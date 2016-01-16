@@ -3,6 +3,9 @@ from gi.repository import Gtk
 import os, time, yaml
 import os.path
 
+from lib.dialog_add_docker import DialogAddDocker
+
+
 class DockerHost:
   conf_path = 'tmp'  #FIXME add preferences
   conf = {
@@ -23,12 +26,11 @@ class DockerHost:
     #FIXME create directory, check permitions, create file
 
     self.builder = Gtk.Builder()
-    self.builder.add_from_file('layout/docker.glade')
+    self.builder.add_from_file('lib/window.glade')
     self.builder.connect_signals(self)
 
     self.window = self.builder.get_object('window_main')
     self.about_dialog = self.builder.get_object('dialog_about')
-    self.add_docker_dialog = self.builder.get_object('dialog_add_docker')
 
     self.en_local_name = self.builder.get_object('en_local_name')
     self.en_repo_name = self.builder.get_object('en_repo_name')
@@ -46,6 +48,9 @@ class DockerHost:
 
     self.window.show()
 
+    #FIXME self.add_site_dialog = self.builder.get_object('dialog_add_site')
+    self.add_docker_dialog = DialogAddDocker(self)
+
 
   def on_window_main_destroy(self, object, data=None):
     #FIXME quit with cancel
@@ -60,8 +65,13 @@ class DockerHost:
     self.about_dialog.hide()
 
   def on_gtk_add_docker_activate(self, menuitem, data=None):
-    self.response = self.add_docker_dialog.run()
-    self.add_docker_dialog.hide()
+    self.response = self.add_docker_dialog.dialog.run()
+    self.add_docker_dialog.dialog.hide()
+
+  def on_gtk_add_site_activate(self, menuitem, data=None):
+    #FIXME
+    self.response = self.add_site_dialog.run()
+    self.add_site_dialog.hide()
 
   def on_notebook1_switch_page(self,  notebook, page, page_num, data=None):
     tab_content = notebook.get_nth_page(page_num)
@@ -78,7 +88,6 @@ class DockerHost:
       children = self.box_status.get_children()
       for child in children:
         child.destroy()
-      print (count_dockers) #FIXME
       if count_dockers:
         box_row = Gtk.Box(spacing=6)
         self.box_status.pack_start(box_row, False, False, 0)
@@ -96,27 +105,6 @@ class DockerHost:
         box_row.pack_end(button, True, True, 0)
 
     self.statusbar.push(0, "Refreshed - {0}".format(time.ctime()))
-
-  # Add Docker Dialog.
-  def on_btn_cancel_clicked(self, button):
-    self.clear_add_docker_dialog()
-
-  def on_bnt_add_docker_clicked(self, button):
-    if len(self.conf['dockers']) == 0 or self.en_local_name.get_text() not in self.conf['dockers']:
-      self.conf['dockers'][self.en_local_name.get_text()] = {
-        'repo_name': self.en_repo_name.get_text(),
-        'addon_param': self.en_addon_param.get_text(),
-        'mount_path': self.en_mount_path.get_text()
-      }
-      with open(self.conf_path + '/docker.yml', 'w') as f_conf:
-        f_conf.write(yaml.dump(self.conf, default_flow_style=False))
-    self.clear_add_docker_dialog()
-
-  def clear_add_docker_dialog(self):
-    self.en_local_name.set_text('')
-    self.en_repo_name.set_text('')
-    self.en_addon_param.set_text('')
-    self.en_mount_path.set_text('')
 
   def get_docker_command(self, command):
     output = ''
