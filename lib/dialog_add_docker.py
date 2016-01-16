@@ -10,7 +10,14 @@ class DialogAddDocker():
     self.dialog = builder.get_object("dialog_add_docker")
     builder.connect_signals(self)
 
-  def on_dialog_add_docker_activate_default():
+    self.en_local_name = builder.get_object('en_local_name')
+    self.en_docker_db_name = builder.get_object('en_docker_db_name')
+    self.en_db_mount = builder.get_object('en_db_mount')
+    self.en_db_user = builder.get_object('en_db_user')
+    self.en_db_base = builder.get_object('en_db_base')
+    self.en_db_pass = builder.get_object('en_db_pass')
+    self.en_docker_php_name = builder.get_object('en_docker_php_name')
+    self.en_php_mount = builder.get_object('en_php_mount')
     self.clear_add_docker_dialog()
 
   def on_btn_cancel_clicked(self, button):
