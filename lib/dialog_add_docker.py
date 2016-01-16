@@ -24,14 +24,17 @@ class DialogAddDocker():
     self.clear_add_docker_dialog()
 
   def on_bnt_add_docker_clicked(self, button):
-    # if len(self.conf['dockers']) == 0 or self.en_local_name.get_text() not in self.conf['dockers']:
-    #   self.conf['dockers'][self.en_local_name.get_text()] = {
-    #     'repo_name': self.en_repo_name.get_text(),
-    #     'addon_param': self.en_addon_param.get_text(),
-    #     'mount_path': self.en_mount_path.get_text()
-    #   }
-    #   with open(self.conf_path + '/docker.yml', 'w') as f_conf:
-    #     f_conf.write(yaml.dump(self.conf, default_flow_style=False))
+    self.parent.add_docker = {
+      self.en_local_name.get_text(): {
+        'docker_db_name': self.en_docker_db_name.get_text(),
+        'db_mount': self.en_db_mount.get_text(),
+        'db_user': self.en_db_user.get_text(),
+        'db_base': self.en_db_base.get_text(),
+        'db_db_pass': self.en_db_pass.get_text(),
+        'docker_php_name': self.en_docker_php_name.get_text(),
+        'php_mount': self.en_php_mount.get_text()
+      }
+    }
     self.clear_add_docker_dialog()
 
   def clear_add_docker_dialog(self):
