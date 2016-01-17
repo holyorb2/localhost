@@ -68,14 +68,13 @@ class DockerHost:
   def on_gtk_add_docker_activate(self, menuitem, data=None):
     self.response = self.add_docker_dialog.dialog.run()
     self.add_docker_dialog.dialog.hide()
-    # if len(self.conf['dockers']) == 0 or self.en_local_name.get_text() not in self.conf['dockers']:
-    #   self.conf['dockers'][self.en_local_name.get_text()] = {
-    #     'repo_name': self.en_repo_name.get_text(),
-    #     'addon_param': self.en_addon_param.get_text(),
-    #     'mount_path': self.en_mount_path.get_text()
-    #   }
-    #   with open(self.conf_path + '/docker.yml', 'w') as f_conf:
-    #     f_conf.write(yaml.dump(self.conf, default_flow_style=False))
+
+    if (self.response):
+      docker_name = self.add_docker.keys()[0]
+
+      self.conf['dockers'][docker_name] = self.add_docker[docker_name]
+      with open(self.conf_path + '/docker.yml', 'w') as f_conf:
+        f_conf.write(yaml.dump(self.conf, default_flow_style=False))
 
   def on_gtk_add_site_activate(self, menuitem, data=None):
     #FIXME

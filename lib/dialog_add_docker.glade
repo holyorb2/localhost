@@ -334,7 +334,7 @@
     </child>
     <action-widgets>
       <action-widget response="0">btn_cancel</action-widget>
-      <action-widget response="0">bnt_add_docker</action-widget>
+      <action-widget response="1">bnt_add_docker</action-widget>
     </action-widgets>
   </object>
 </interface>

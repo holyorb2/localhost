@@ -23,6 +23,7 @@ class DialogAddDocker():
   def on_btn_cancel_clicked(self, button):
     self.clear_add_docker_dialog()
 
+
   def on_bnt_add_docker_clicked(self, button):
     self.parent.add_docker = {
       self.en_local_name.get_text(): {
