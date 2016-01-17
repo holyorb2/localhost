@@ -3,7 +3,8 @@ from gi.repository import Gtk
 import os, time, yaml
 import os.path
 
-from lib.dialog_add_docker import DialogAddDocker
+from lib.dialog_add_db_docker import DialogAddDBDocker
+from lib.dialog_add_php_docker import DialogAddPhpDocker
 
 
 class DockerHost:
@@ -50,7 +51,8 @@ class DockerHost:
     self.window.show()
 
     #FIXME self.add_site_dialog = self.builder.get_object('dialog_add_site')
-    self.add_docker_dialog = DialogAddDocker(self)
+    self.add_db_docker_dialog = DialogAddDBDocker(self)
+    self.add_php_docker_dialog = DialogAddPhpDocker(self)
 
 
   def on_window_main_destroy(self, object, data=None):
@@ -65,16 +67,23 @@ class DockerHost:
     self.response = self.about_dialog.run()
     self.about_dialog.hide()
 
-  def on_gtk_add_docker_activate(self, menuitem, data=None):
-    self.response = self.add_docker_dialog.dialog.run()
-    self.add_docker_dialog.dialog.hide()
+  def on_gtk_add_db_docker_activate(self, menuitem, data=None):
+    self.response = self.add_db_docker_dialog.dialog.run()
+    self.add_db_docker_dialog.dialog.hide()
 
-    if (self.response):
-      docker_name = self.add_docker.keys()[0]
+    #FIXME
+    # if (self.response):
+    #   docker_name = self.add_docker.keys()[0]
 
-      self.conf['dockers'][docker_name] = self.add_docker[docker_name]
-      with open(self.conf_path + '/docker.yml', 'w') as f_conf:
-        f_conf.write(yaml.dump(self.conf, default_flow_style=False))
+    #   self.conf['dockers'][docker_name] = self.add_docker[docker_name]
+    #   with open(self.conf_path + '/docker.yml', 'w') as f_conf:
+    #     f_conf.write(yaml.dump(self.conf, default_flow_style=False))
+
+  def on_gtk_add_php_docker_activate(self, menuitem, data=None):
+    self.response = self.add_php_docker_dialog.dialog.run()
+    self.add_php_docker_dialog.dialog.hide()
+
+    #FIXME - save config
 
   def on_gtk_add_site_activate(self, menuitem, data=None):
     #FIXME
