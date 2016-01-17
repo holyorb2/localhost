@@ -22,6 +22,7 @@ class DialogAddPhpDocker():
   def on_bnt_add_docker_clicked(self, button):
     self.parent.add_docker = {
       self.en_local_name.get_text(): {
+        'type': 'PHP',
         'docker_name': self.en_docker_name.get_text(),
         'path_mount': self.en_path_mount.get_text(),
       }

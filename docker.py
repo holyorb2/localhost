@@ -71,19 +71,21 @@ class DockerHost:
     self.response = self.add_db_docker_dialog.dialog.run()
     self.add_db_docker_dialog.dialog.hide()
 
-    #FIXME
-    # if (self.response):
-    #   docker_name = self.add_docker.keys()[0]
-
-    #   self.conf['dockers'][docker_name] = self.add_docker[docker_name]
-    #   with open(self.conf_path + '/docker.yml', 'w') as f_conf:
-    #     f_conf.write(yaml.dump(self.conf, default_flow_style=False))
+    if (self.response):
+      docker_name = self.add_docker.keys()[0]
+      self.conf['dockers'][docker_name] = self.add_docker[docker_name]
+      with open(self.conf_path + '/docker.yml', 'w') as f_conf:
+        f_conf.write(yaml.dump(self.conf, default_flow_style=False))
 
   def on_gtk_add_php_docker_activate(self, menuitem, data=None):
     self.response = self.add_php_docker_dialog.dialog.run()
     self.add_php_docker_dialog.dialog.hide()
 
-    #FIXME - save config
+    if (self.response):
+      docker_name = self.add_docker.keys()[0]
+      self.conf['dockers'][docker_name] = self.add_docker[docker_name]
+      with open(self.conf_path + '/docker.yml', 'w') as f_conf:
+        f_conf.write(yaml.dump(self.conf, default_flow_style=False))
 
   def on_gtk_add_site_activate(self, menuitem, data=None):
     #FIXME

@@ -1,5 +1,12 @@
 dockers:
-  mariadb:
-    addon_param: -e MYSQL_ROOT_PASSWORD=admin -e MYSQL_DATABASE=drupal8 -e MYSQL_USER=drupal8 -e MYSQL_PASSWORD=drupal8
-    mount_path: mysql:/var/lib/mysql
-    repo_name: mariadb
+  MariaDB:
+    db_base: '{project}'
+    db_db_pass: '{project}'
+    db_user: '{project}'
+    docker_name: '{server_name}'
+    path_mount: '{project}/mysql'
+    type: DB
+  Php5.4.7:
+    docker_name: '{server_name}'
+    path_mount: '{project}/www'
+    type: PHP
