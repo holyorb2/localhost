@@ -17,7 +17,7 @@ class DialogAddPhpDocker():
     self.clear_add_docker_dialog()
 
   def on_entry_changed(self, entry):
-    if self.en_docker_name.get_text() != '' and self.en_local_name.get_text() != '':
+    if self.en_docker_name.get_text().strip() != '' and self.en_local_name.get_text().strip() != '':
       self.bnt_ok.set_sensitive(True)
     else:
       self.bnt_ok.set_sensitive(False)
@@ -27,10 +27,10 @@ class DialogAddPhpDocker():
 
   def on_bnt_add_docker_clicked(self, button):
     self.parent.add_docker = {
-      self.en_local_name.get_text(): {
+      self.en_local_name.get_text().strip(): {
         'type': 'PHP',
-        'docker_name': self.en_docker_name.get_text(),
-        'path_mount': self.en_path_mount.get_text(),
+        'docker_name': self.en_docker_name.get_text().strip(),
+        'path_mount': self.en_path_mount.get_text().strip(),
       }
     }
     self.clear_add_docker_dialog()
