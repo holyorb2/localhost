@@ -65,7 +65,7 @@
               <object class="GtkLabel" id="label1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Server name</property>
+                <property name="label" translatable="yes">Server name*</property>
               </object>
             </child>
             <child>
@@ -77,6 +77,7 @@
                 <property name="secondary_icon_activatable">False</property>
                 <property name="primary_icon_sensitive">True</property>
                 <property name="secondary_icon_sensitive">True</property>
+                <signal name="changed" handler="on_entry_changed" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -109,7 +110,7 @@
               <object class="GtkLabel" id="label7">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">PHP docker</property>
+                <property name="label" translatable="yes">PHP docker*</property>
               </object>
               <packing>
                 <property name="top_attach">2</property>
@@ -126,6 +127,7 @@
                 <property name="secondary_icon_activatable">False</property>
                 <property name="primary_icon_sensitive">True</property>
                 <property name="secondary_icon_sensitive">True</property>
+                <signal name="changed" handler="on_entry_changed" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
