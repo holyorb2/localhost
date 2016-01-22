@@ -13,19 +13,19 @@ class DialogAddPhpDocker():
     self.en_local_name = builder.get_object('en_local_name')
     self.en_docker_name = builder.get_object('en_docker_name')
     self.en_path_mount = builder.get_object('en_path_mount')
-    self.bnt_ok = builder.get_object('bnt_add_docker')
+    self.btn_ok = builder.get_object('btn_add_docker')
     self.clear_add_docker_dialog()
 
   def on_entry_changed(self, entry):
     if self.en_docker_name.get_text().strip() != '' and self.en_local_name.get_text().strip() != '':
-      self.bnt_ok.set_sensitive(True)
+      self.btn_ok.set_sensitive(True)
     else:
-      self.bnt_ok.set_sensitive(False)
+      self.btn_ok.set_sensitive(False)
 
   def on_btn_cancel_clicked(self, button):
     self.clear_add_docker_dialog()
 
-  def on_bnt_add_docker_clicked(self, button):
+  def on_btn_add_docker_clicked(self, button):
     self.parent.add_docker = {
       self.en_local_name.get_text().strip(): {
         'type': 'PHP',
@@ -39,5 +39,5 @@ class DialogAddPhpDocker():
     self.en_local_name.set_text('')
     self.en_docker_name.set_text('{server_name}')
     self.en_path_mount.set_text('{project}/www')
-    self.bnt_ok.set_sensitive(False)
+    self.btn_ok.set_sensitive(False)
 

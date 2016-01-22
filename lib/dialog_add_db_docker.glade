@@ -33,14 +33,14 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="bnt_add_docker">
+              <object class="GtkButton" id="btn_add_docker">
                 <property name="label">gtk-ok</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="on_bnt_add_docker_clicked" swapped="no"/>
+                <signal name="clicked" handler="on_btn_add_docker_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -258,7 +258,7 @@
     </child>
     <action-widgets>
       <action-widget response="0">btn_cancel</action-widget>
-      <action-widget response="1">bnt_add_docker</action-widget>
+      <action-widget response="1">btn_add_docker</action-widget>
     </action-widgets>
   </object>
 </interface>
