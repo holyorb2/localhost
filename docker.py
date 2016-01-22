@@ -5,6 +5,7 @@ import os.path
 
 from lib.dialog_add_db_docker import DialogAddDBDocker
 from lib.dialog_add_php_docker import DialogAddPhpDocker
+from lib.dialog_add_site import DialogAddSite
 
 
 class DockerHost:
@@ -53,7 +54,7 @@ class DockerHost:
     #FIXME self.add_site_dialog = self.builder.get_object('dialog_add_site')
     self.add_db_docker_dialog = DialogAddDBDocker(self)
     self.add_php_docker_dialog = DialogAddPhpDocker(self)
-
+    self.add_site_dialog = DialogAddSite(self)
 
   def on_window_main_destroy(self, object, data=None):
     #FIXME quit with cancel
@@ -89,8 +90,8 @@ class DockerHost:
 
   def on_gtk_add_site_activate(self, menuitem, data=None):
     #FIXME
-    self.response = self.add_site_dialog.run()
-    self.add_site_dialog.hide()
+    self.response = self.add_site_dialog.dialog.run()
+    self.add_site_dialog.dialog.hide()
 
   def on_notebook1_switch_page(self,  notebook, page, page_num, data=None):
     tab_content = notebook.get_nth_page(page_num)
