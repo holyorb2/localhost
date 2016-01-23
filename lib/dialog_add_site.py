@@ -44,12 +44,6 @@ class DialogAddSite():
     self.clear_add_dialog()
 
 
-  def on_entry_changed(self, entry):
-    if self.en_site_name.get_text().strip() != '':
-      self.btn_add_site.set_sensitive(True)
-    else:
-      self.btn_add_site.set_sensitive(False)
-
   def on_btn_cancel_clicked(self, button):
     self.clear_add_dialog()
 
@@ -58,6 +52,19 @@ class DialogAddSite():
 
   def on_btn_edit_site_clicked(self, button):
     pass
+
+  def on_entry_changed(self, entry):
+    self.btn_add_site.set_sensitive(self.dialog_validate())
+
+  def on_cb_changed(self, widget):
+    self.btn_add_site.set_sensitive(self.dialog_validate())
+
+  def dialog_validate(self):
+    if self.en_site_name.get_text().strip() == '':
+      return False
+    if self.cb_docker_db.get_active() == 0 or self.cb_docker_php.get_active() == 0:
+      return False
+    return True
 
   def clear_add_dialog(self):
     self.btn_add_site.set_sensitive(False)
