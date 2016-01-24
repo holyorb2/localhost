@@ -41,11 +41,10 @@ class DialogEditSite():
     return False
 
   def clear_dialog(self):
-    print(self.parent.add_docker) #FIXME
-    if len(self.parent.add_docker):
-      site_name = self.parent.add_docker.keys()[0]
-      docker_php = self.parent.add_docker[site_name]['docker_php']
-      docker_db = self.parent.add_docker[site_name]['docker_db']
+    if len(self.parent.add_site):
+      site_name = self.parent.add_site.keys()[0]
+      docker_php = self.parent.add_site[site_name]['docker_php']
+      docker_db = self.parent.add_site[site_name]['docker_db']
 
       self.en_site_name.set_text(site_name)
       self.en_php_name.set_text(docker_php)

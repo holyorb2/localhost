@@ -38,7 +38,7 @@ class DialogAddPhpDocker():
 
   def clear_add_docker_dialog(self):
     self.en_local_name.set_text('')
-    self.en_docker_name.set_text('{server_name}')
+    self.en_docker_name.set_text('{php_server_name}')
     self.en_path_mount.set_text('{project}/www')
     self.btn_ok.set_sensitive(False)
 
