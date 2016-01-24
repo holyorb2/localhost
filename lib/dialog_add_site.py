@@ -58,7 +58,7 @@ class DialogAddSite():
     self.clear_add_dialog()
 
   def on_btn_edit_site_clicked(self, button):
-    pass
+    self.on_btn_add_site_clicked(button)
 
   def on_entry_changed(self, entry):
     self.dialog_button_status(self.dialog_validate())

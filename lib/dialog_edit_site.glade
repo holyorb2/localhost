@@ -248,7 +248,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry1">
+              <object class="GtkEntry" id="en_site_name">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -261,7 +261,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry2">
+              <object class="GtkEntry" id="en_php_name">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -276,7 +276,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry3">
+              <object class="GtkEntry" id="en_php_image">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -291,7 +291,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry4">
+              <object class="GtkEntry" id="en_php_mount">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -306,7 +306,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry5">
+              <object class="GtkEntry" id="en_db_name">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -321,7 +321,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry6">
+              <object class="GtkEntry" id="en_db_image">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -336,7 +336,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry7">
+              <object class="GtkEntry" id="en_db_mount">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -351,7 +351,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry8">
+              <object class="GtkEntry" id="en_db_user">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -366,7 +366,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry9">
+              <object class="GtkEntry" id="en_db_base">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -381,7 +381,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry10">
+              <object class="GtkEntry" id="en_db_pass">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -396,7 +396,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkSwitch" id="switch1">
+              <object class="GtkSwitch" id="sw_site_status">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
               </object>

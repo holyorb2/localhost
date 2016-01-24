@@ -6,7 +6,7 @@ import os.path
 from lib.dialog_add_db_docker import DialogAddDBDocker
 from lib.dialog_add_php_docker import DialogAddPhpDocker
 from lib.dialog_add_site import DialogAddSite
-
+from lib.dialog_edit_site import DialogEditSite
 
 class DockerHost:
   conf_path = 'tmp'  #FIXME add preferences
@@ -53,9 +53,6 @@ class DockerHost:
 
     self.window.show()
 
-    self.add_db_docker_dialog = DialogAddDBDocker(self)
-    self.add_php_docker_dialog = DialogAddPhpDocker(self)
-    self.add_site_dialog = DialogAddSite(self)
 
   def on_window_main_destroy(self, object, data=None):
     #FIXME quit with cancel
@@ -66,38 +63,45 @@ class DockerHost:
     Gtk.main_quit()
 
   def on_gtk_about_activate(self, menuitem, data=None):
-    self.response = self.about_dialog.run()
+    response = self.about_dialog.run()
     self.about_dialog.hide()
 
   def on_gtk_add_db_docker_activate(self, menuitem, data=None):
-    self.response = self.add_db_docker_dialog.dialog.run()
+    self.add_db_docker_dialog = DialogAddDBDocker(self)
+    response = self.add_db_docker_dialog.dialog.run()
     self.add_db_docker_dialog.dialog.hide()
 
-    if self.response == 1:
+    if response == 1:
       docker_name = self.add_docker.keys()[0]
       self.conf['dockers'][docker_name] = self.add_docker[docker_name]
       self.resave_config()
 
   def on_gtk_add_php_docker_activate(self, menuitem, data=None):
-    self.response = self.add_php_docker_dialog.dialog.run()
+    self.add_php_docker_dialog = DialogAddPhpDocker(self)
+    response = self.add_php_docker_dialog.dialog.run()
     self.add_php_docker_dialog.dialog.hide()
 
-    if self.response == 1:
+    if response == 1:
       docker_name = self.add_docker.keys()[0]
       self.conf['dockers'][docker_name] = self.add_docker[docker_name]
       self.resave_config()
 
   def on_gtk_add_site_activate(self, menuitem, data=None):
-    self.response = self.add_site_dialog.dialog.run()
+    self.add_site_dialog = DialogAddSite(self)
+    response = self.add_site_dialog.dialog.run()
     self.add_site_dialog.dialog.hide()
-    if self.response in [1, 2]:
+
+    if response in [1, 2]:
       site_name = self.add_site.keys()[0]
       self.conf['sites'][site_name] = self.add_site[site_name]
       self.resave_config()
 
-    if self.response == 2:
-      pass
-      #FIXME - edit window
+    if response == 2:
+      self.edit_site_dialog = DialogEditSite(self)
+      response_edit = self.edit_site_dialog.dialog.run()
+      self.edit_site_dialog.dialog.hide()
+
+      #FIXME save config
 
   def on_notebook1_switch_page(self,  notebook, page, page_num, data=None):
     tab_content = notebook.get_nth_page(page_num)
