@@ -20,7 +20,8 @@ class DialogAddDBDocker():
     self.clear_add_docker_dialog()
 
   def on_entry_changed(self, entry):
-    if self.en_local_name.get_text().strip() != '' and self.en_docker_name.get_text().strip() != '':
+    loc_name = self.en_local_name.get_text().strip()
+    if loc_name != '' and loc_name not in self.parent.conf['dockers'] and self.en_docker_name.get_text().strip() != '':
       self.btn_ok.set_sensitive(True)
     else:
       self.btn_ok.set_sensitive(False)
