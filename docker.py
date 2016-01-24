@@ -11,7 +11,8 @@ from lib.dialog_add_site import DialogAddSite
 class DockerHost:
   conf_path = 'tmp'  #FIXME add preferences
   conf = {
-    'dockers': {}
+    'dockers': {},
+    'sites': {}
   }
   d_tabs = {
     #'Status': '',
@@ -20,6 +21,7 @@ class DockerHost:
     'Info': 'version'
   }
   add_docker = {}
+  add_site = {}
 
   def __init__(self):
     if os.path.isfile(self.conf_path + '/docker.yml'):
@@ -72,26 +74,31 @@ class DockerHost:
     self.response = self.add_db_docker_dialog.dialog.run()
     self.add_db_docker_dialog.dialog.hide()
 
-    if (self.response == 1):
+    if self.response == 1:
       docker_name = self.add_docker.keys()[0]
       self.conf['dockers'][docker_name] = self.add_docker[docker_name]
-      with open(self.conf_path + '/docker.yml', 'w') as f_conf:
-        f_conf.write(yaml.dump(self.conf, default_flow_style=False))
+      self.resave_config()
 
   def on_gtk_add_php_docker_activate(self, menuitem, data=None):
     self.response = self.add_php_docker_dialog.dialog.run()
     self.add_php_docker_dialog.dialog.hide()
 
-    if (self.response == 1):
+    if self.response == 1:
       docker_name = self.add_docker.keys()[0]
       self.conf['dockers'][docker_name] = self.add_docker[docker_name]
-      with open(self.conf_path + '/docker.yml', 'w') as f_conf:
-        f_conf.write(yaml.dump(self.conf, default_flow_style=False))
+      self.resave_config()
 
   def on_gtk_add_site_activate(self, menuitem, data=None):
-    #FIXME
     self.response = self.add_site_dialog.dialog.run()
     self.add_site_dialog.dialog.hide()
+    if self.response in [1, 2]:
+      site_name = self.add_site.keys()[0]
+      self.conf['sites'][site_name] = self.add_site[site_name]
+      self.resave_config()
+
+    if self.response == 2:
+      pass
+      #FIXME - edit window
 
   def on_notebook1_switch_page(self,  notebook, page, page_num, data=None):
     tab_content = notebook.get_nth_page(page_num)
@@ -135,6 +142,9 @@ class DockerHost:
       output = output + line
     return output
 
+  def resave_config(self):
+    with open(self.conf_path + '/docker.yml', 'w') as f_conf:
+      f_conf.write(yaml.dump(self.conf, default_flow_style=False))
 
 if __name__ == "__main__":
   main = DockerHost()

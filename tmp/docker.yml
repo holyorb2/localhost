@@ -1,12 +1,16 @@
 dockers:
-  MariaDB:
+  mariadb:
     db_base: '{project}'
     db_db_pass: '{project}'
     db_user: '{project}'
     docker_name: '{server_name}'
     path_mount: '{project}/mysql'
     type: DB
-  Php5.4.7:
+  php5.4.7:
     docker_name: '{server_name}'
     path_mount: '{project}/www'
     type: PHP
+sites:
+  test:
+    docker_db: mariadb
+    docker_php: php5.4.7

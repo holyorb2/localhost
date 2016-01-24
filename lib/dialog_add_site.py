@@ -11,6 +11,7 @@ class DialogAddSite():
     builder.connect_signals(self)
 
     self.btn_add_site = builder.get_object('btn_add_site')
+    self.btn_edit_site = builder.get_object('btn_edit_site')
     self.en_site_name = builder.get_object('en_site_name')
     self.cb_docker_db = builder.get_object('cb_docker_db')
     self.cb_docker_php = builder.get_object('cb_docker_php')
@@ -48,16 +49,22 @@ class DialogAddSite():
     self.clear_add_dialog()
 
   def on_btn_add_site_clicked(self, button):
+    self.parent.add_site = {
+      self.en_site_name.get_text().strip(): {
+        'docker_db': self.cb_docker_db.get_model()[self.cb_docker_db.get_active()][1],
+        'docker_php': self.cb_docker_php.get_model()[self.cb_docker_php.get_active()][1],
+      }
+    }
     self.clear_add_dialog()
 
   def on_btn_edit_site_clicked(self, button):
     pass
 
   def on_entry_changed(self, entry):
-    self.btn_add_site.set_sensitive(self.dialog_validate())
+    self.dialog_button_status(self.dialog_validate())
 
   def on_cb_changed(self, widget):
-    self.btn_add_site.set_sensitive(self.dialog_validate())
+    self.dialog_button_status(self.dialog_validate())
 
   def dialog_validate(self):
     if self.en_site_name.get_text().strip() == '':
@@ -66,5 +73,12 @@ class DialogAddSite():
       return False
     return True
 
+  def dialog_button_status(self, status=False):
+    self.btn_add_site.set_sensitive(status)
+    self.btn_edit_site.set_sensitive(status)
+
   def clear_add_dialog(self):
-    self.btn_add_site.set_sensitive(False)
+    self.en_site_name.set_text('')
+    self.dialog_button_status()
+    self.cb_docker_php.set_active(0)
+    self.cb_docker_db.set_active(0)
