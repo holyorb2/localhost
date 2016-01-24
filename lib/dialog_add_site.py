@@ -67,7 +67,8 @@ class DialogAddSite():
     self.dialog_button_status(self.dialog_validate())
 
   def dialog_validate(self):
-    if self.en_site_name.get_text().strip() == '':
+    site_name = self.en_site_name.get_text().strip()
+    if site_name == '' or site_name in self.parent.conf['sites']:
       return False
     if self.cb_docker_db.get_active() == 0 or self.cb_docker_php.get_active() == 0:
       return False
