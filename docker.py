@@ -53,7 +53,6 @@ class DockerHost:
 
     self.window.show()
 
-    #FIXME self.add_site_dialog = self.builder.get_object('dialog_add_site')
     self.add_db_docker_dialog = DialogAddDBDocker(self)
     self.add_php_docker_dialog = DialogAddPhpDocker(self)
     self.add_site_dialog = DialogAddSite(self)
